@@ -1,0 +1,5 @@
+{
+  "maxTokens": 300,
+  "temperature": 0.2,
+  "topP": 0.9
+}
