@@ -25,7 +25,7 @@ def write_result(response, latency_ms, inference_config):
     usage = response.get("usage", {})
     output_text = response["output"]["message"]["content"][0]["text"]
 
-    file_exists = RESULTS_FILE.exists()
+    file_exists = RESULTS_FILE.exists() and RESULTS_FILE.stat().st_size > 0
 
     with RESULTS_FILE.open("a", newline="") as file:
         writer = csv.writer(file)
