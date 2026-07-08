@@ -1,0 +1,9 @@
+{
+  "profileName": "conservative",
+  "description": "Prioritizes concise and predictable responses.",
+  "inferenceConfig": {
+    "maxTokens": 150,
+    "temperature": 0.2,
+    "topP": 0.8
+  }
+}
