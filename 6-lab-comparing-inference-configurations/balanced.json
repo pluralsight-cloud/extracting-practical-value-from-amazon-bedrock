@@ -1,0 +1,9 @@
+{
+  "profileName": "balanced",
+  "description": "Balances response detail, consistency, and flexibility.",
+  "inferenceConfig": {
+    "maxTokens": 300,
+    "temperature": 0.5,
+    "topP": 0.9
+  }
+}
