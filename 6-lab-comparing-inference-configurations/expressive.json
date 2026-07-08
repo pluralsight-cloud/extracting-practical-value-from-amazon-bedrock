@@ -1,0 +1,9 @@
+{
+  "profileName": "expressive",
+  "description": "Allows longer and more varied responses for creative or exploratory use cases.",
+  "inferenceConfig": {
+    "maxTokens": 500,
+    "temperature": 0.9,
+    "topP": 1.0
+  }
+}
