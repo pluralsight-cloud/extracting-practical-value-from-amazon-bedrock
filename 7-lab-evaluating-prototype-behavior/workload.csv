@@ -1,0 +1,10 @@
+request_id,request_type,prompt
+1,baseline,Write a concise product summary for a cloud-based inventory tracking application.
+2,baseline,Write a concise product summary for a cloud-based appointment scheduling application.
+3,baseline,Write a concise product summary for a cloud-based customer feedback application.
+4,extended,Write a detailed product summary for a cloud-based inventory tracking application, including benefits for small businesses.
+5,extended,Write a detailed product summary for a cloud-based appointment scheduling application, including benefits for small businesses.
+6,extended,Write a detailed product summary for a cloud-based customer feedback application, including benefits for small businesses.
+7,stress,Write a detailed product summary, three customer benefits, two implementation considerations, and one risk for a cloud-based inventory tracking application.
+8,stress,Write a detailed product summary, three customer benefits, two implementation considerations, and one risk for a cloud-based appointment scheduling application.
+9,stress,Write a detailed product summary, three customer benefits, two implementation considerations, and one risk for a cloud-based customer feedback application.
