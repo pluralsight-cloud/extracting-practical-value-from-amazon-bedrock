@@ -1,0 +1,1 @@
+timestamp,request_id,request_type,model_id,input_tokens,output_tokens,total_tokens,latency_ms,output_length_flag,status
