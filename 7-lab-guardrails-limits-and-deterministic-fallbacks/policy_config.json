@@ -1,0 +1,14 @@
+{
+  "blockedTerms": [
+    "password",
+    "credit card number",
+    "social security number"
+  ],
+  "maxPromptCharacters": 500,
+  "maxRetries": 2,
+  "fallbackMessages": {
+    "blocked": "This request cannot be processed because it violates the application policy.",
+    "limitExceeded": "This request cannot be processed because it exceeds the configured input limit.",
+    "inferenceFailed": "The request could not be completed. Please try again later."
+  }
+}
