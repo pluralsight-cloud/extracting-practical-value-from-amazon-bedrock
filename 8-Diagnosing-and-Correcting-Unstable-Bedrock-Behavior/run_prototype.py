@@ -12,7 +12,8 @@ PROFILES_FILE = Path("profiles.json")
 CONFIG_FILE = Path("prototype_config.json")
 VALIDATION_FILE = Path("validation.json")
 
-TOKEN_THRESHOLD = 1200
+TOKEN_THRESHOLD = 1700
+S3_BUCKET_PREFIX = "bedrock-validation-"
 
 
 def load_json(path):
@@ -46,6 +47,23 @@ def invoke_model(client, prompt, inference_config):
     latency_ms = round((time.perf_counter() - start_time) * 1000)
 
     return response, latency_ms
+
+
+def upload_validation_to_s3():
+    sts_client = boto3.client("sts")
+    s3_client = boto3.client("s3")
+
+    account_id = sts_client.get_caller_identity()["Account"]
+    bucket_name = f"{S3_BUCKET_PREFIX}{account_id}"
+
+    s3_client.upload_file(
+        str(VALIDATION_FILE),
+        bucket_name,
+        VALIDATION_FILE.name
+    )
+
+    return bucket_name
+
 
 
 def main():
@@ -133,6 +151,20 @@ def main():
     print(f"Token usage status: {token_usage_status}")
     print()
     print("Validation results written to validation.json")
+
+    if overall_status == "PASS":
+        bucket_name = upload_validation_to_s3()
+
+        print()
+        print("Validation successful.")
+        print(
+            f"Uploaded validation.json to "
+            f"s3://{bucket_name}/validation.json"
+        )
+    else:
+        print()
+        print("Validation did not pass.")
+        print("validation.json was not uploaded to Amazon S3.")
 
 
 if __name__ == "__main__":
