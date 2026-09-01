@@ -14,6 +14,7 @@ VALIDATION_FILE = Path("validation.json")
 
 TOKEN_THRESHOLD = 1700
 S3_BUCKET_PREFIX = "bedrock-validation-"
+SSM_PARAMETER_NAME = "/bedrock-lab/validation-result"
 
 
 def load_json(path):
@@ -64,6 +65,16 @@ def upload_validation_to_s3():
 
     return bucket_name
 
+
+def write_validation_to_ssm(validation):
+    ssm_client = boto3.client("ssm")
+
+    ssm_client.put_parameter(
+        Name=SSM_PARAMETER_NAME,
+        Value=json.dumps(validation),
+        Type="String",
+        Overwrite=True
+    )
 
 
 def main():
@@ -154,6 +165,7 @@ def main():
 
     if overall_status == "PASS":
         bucket_name = upload_validation_to_s3()
+        write_validation_to_ssm(validation)
 
         print()
         print("Validation successful.")
